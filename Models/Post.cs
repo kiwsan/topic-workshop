@@ -11,5 +11,6 @@ namespace Topic.Models
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int AuthorId { get; set; }
+        public bool IsPublished { get; set; }
     }
 }

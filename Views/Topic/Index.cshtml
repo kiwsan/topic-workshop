@@ -4,7 +4,7 @@
     ViewBag.Title = "Topic Page";
 }
 
-<a href="@Url.Action("Create","Topic")">New Post</a>
+<a href="@Url.Action("Create", "Topic")">New Post</a>
 <table class="table table-responsive">
     <thead>
     <tr>
@@ -12,7 +12,7 @@
         <th>Title</th>
         <th>Content</th>
         <th>Published</th>
-        <th>Go to topic content</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -25,7 +25,13 @@
                 <td>@post.Content?.Substring(0, 15)</td>
                 <td>@post.UpdatedDate.ToString("f")</td>
                 <td>
-                    <a href="@Url.Action("Detail", "Topic", new {id = post.Id})"></a>
+                    <a href="@Url.Action("Detail", "Topic", new {id = post.Id})">Topic content</a>
+                    @{
+                        if (post.AuthorId == Model.Id)
+                        {
+                            <a href="@Url.Action("UnpublishedPost", "Topic")">Delete</a>
+                        }
+                    }
                 </td>
             </tr>
         }

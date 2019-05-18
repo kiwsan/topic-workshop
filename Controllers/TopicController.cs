@@ -12,7 +12,7 @@ namespace Topic.Controllers
         {
             //test
             UserSignIn("turtle", "12345");
-            
+
             if (IsExpire)
             {
                 return RedirectToAction("SignIn", "Auth");
@@ -20,11 +20,12 @@ namespace Topic.Controllers
 
             var model = new TopicViewModel();
 
-            //get user information
+            //set user information
+            model.Id = Me.Id;
             model.Email = Me.Email;
             model.DisplayName = Me.DisplayName;
 
-            //get posts
+            //set posts
             using (var postRepo = new PostRepository())
             {
                 model.Posts = postRepo.GetAll();
@@ -43,17 +44,17 @@ namespace Topic.Controllers
 
             var model = new ContentViewModel();
 
-            //get user information
+            //set user information
             model.Email = Me.Email;
             model.DisplayName = Me.DisplayName;
 
-            //get post
+            //set post
             using (var postRepo = new PostRepository())
             {
                 model.Post = postRepo.FindById(id);
             }
 
-            //get comments
+            //set comments
             using (var commentRepo = new CommentRepository())
             {
                 model.Comments = commentRepo.GetFindByPostId(model.Post.Id);
@@ -72,7 +73,7 @@ namespace Topic.Controllers
 
             var model = new TopicViewModel();
 
-            //get user information
+            //set user information
             model.Email = Me.Email;
             model.DisplayName = Me.DisplayName;
 
@@ -101,6 +102,18 @@ namespace Topic.Controllers
         }
 
         [HttpGet]
+        public ActionResult UnpublishedPost(int id)
+        {
+            //unpublished post
+            using (var postRepo = new PostRepository())
+            {
+                postRepo.Unpublished(id, false);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public ActionResult Comment()
         {
             if (IsExpire)
@@ -110,7 +123,7 @@ namespace Topic.Controllers
 
             var model = new TopicViewModel();
 
-            //get user information
+            //set user information
             model.Email = Me.Email;
             model.DisplayName = Me.DisplayName;
 

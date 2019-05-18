@@ -29,9 +29,16 @@ namespace Topic.Data.Repositories
                 new SqlParameter("@authorId", post.AuthorId),
                 new SqlParameter("@statusId", post.StatusId),
                 new SqlParameter("@createdDate", DateTime.Now),
-                new SqlParameter("@updatedDate", DateTime.Now));
+                new SqlParameter("@updatedDate", DateTime.Now),
+                new SqlParameter("@isPublished", true));
 
             return post;
+        }
+
+        public void Unpublished(int id, bool isPublished)
+        {
+            _context.ExecuteProc<object>("postpIsPublished", new SqlParameter("@id", id),
+                new SqlParameter("@isPublished", isPublished));
         }
 
         public void Dispose()
