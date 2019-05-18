@@ -18,6 +18,7 @@ namespace Topic.Data
             DbSqlCommand = DbConnection.CreateCommand();
         }
 
+       
         private SqlParameter[] Parameters(params ParameterOptions[] parameters)
             => parameters.Select(x => new SqlParameter()
             {
