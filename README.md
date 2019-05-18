@@ -11,7 +11,7 @@ AS
 BEGIN
   SELECT [id], [username], [email], [display_name]
   FROM user
-  WHERE DisplayName LIKE '%@displayName%'
+  WHERE DisplayName LIKE '%'+@displayName+'%'
 END
 GO
 
