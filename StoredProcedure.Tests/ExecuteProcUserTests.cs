@@ -9,7 +9,7 @@ namespace StoredProcedure.Tests
     [TestFixture]
     public class ExecuteProcUserTests
     {
-        [TestCase("turtle2", "12345", "turtle2@gmail.com", "turtle")]
+        [TestCase("turtle", "12345", "turtle@gmail.com", "turtle")]
         public void Create_User_Test(string username, string password, string email, string displayName)
         {
             var user = new UserRepository();
@@ -25,7 +25,7 @@ namespace StoredProcedure.Tests
             Assert.IsNotNull(user);
         }
 
-        [TestCase(5)]
+        [TestCase(1)]
         public void Get_UserById_Test(int id)
         {
             var user = new UserRepository();

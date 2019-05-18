@@ -10,7 +10,7 @@ namespace Topic.Controllers
         [HttpGet]
         public ActionResult SignIn(string username, string password)
         {
-            SignIn(username, password);
+            UserSignIn(username, password);
 
             if (Me == null)
             {

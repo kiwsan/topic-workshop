@@ -9,7 +9,7 @@ namespace Topic.Controllers
         public User Me
             => (User) Session["user"];
 
-        protected void SignIn(string username, string password)
+        protected void UserSignIn(string username, string password)
         {
             using (var userRepo = new UserRepository())
             {
