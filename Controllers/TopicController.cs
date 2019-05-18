@@ -10,6 +10,9 @@ namespace Topic.Controllers
         // GET
         public ActionResult Index()
         {
+            //test
+            UserSignIn("turtle", "12345");
+            
             if (IsExpire)
             {
                 return RedirectToAction("SignIn", "Auth");

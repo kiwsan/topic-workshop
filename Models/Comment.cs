@@ -16,7 +16,7 @@ namespace Topic.Models
 
     public enum Status
     {
-        User = 1,
+        User = 3,
         Admin,
         Author
     }

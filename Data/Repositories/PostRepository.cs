@@ -20,7 +20,7 @@ namespace Topic.Data.Repositories
             => _context.ExecuteProc<Post>("postpGetAll", null);
 
         public Post FindById(int id)
-            => _context.ExecuteProc<Post>("", new SqlParameter("postpFindById", id)).FirstOrDefault();
+            => _context.ExecuteProc<Post>("postpFindById", new SqlParameter("@id", id)).FirstOrDefault();
 
         public Post Add(Post post)
         {
