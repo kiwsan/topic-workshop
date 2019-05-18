@@ -3,6 +3,7 @@
 ### How to use ExecuteProc method
 
 #### Create sample stored procedures
+```sql
  
 CREATE PROCEDURE uspGetAll
   @displayName nvarchar(250)
@@ -22,3 +23,5 @@ BEGIN
   WHERE nvarchar LIKE '%turtle%'
 END
 GO
+
+```
