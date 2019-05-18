@@ -10,7 +10,6 @@ namespace Topic.Models
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int AuthorId { get; set; }
-        public string Email { get; set; }
         public string Url { get; set; }
         public int PostId { get; set; }
     }

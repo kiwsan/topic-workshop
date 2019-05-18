@@ -1,31 +1,26 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using Topic.Options;
+using Topic.Extentions;
+using Topic.Utils;
 
 namespace Topic.Data
 {
-    public class DbContext
+    public class DbContext : IDisposable
     {
         public string ConnectionString { get; private set; }
         public SqlConnection DbConnection { get; private set; }
         public SqlCommand DbSqlCommand { get; private set; }
 
-        public DbContext(string _sqlConnectionString)
+        public DbContext(string connectionString)
         {
-            ConnectionString = _sqlConnectionString;
-            DbConnection = new SqlConnection();
+            ConnectionString = connectionString;
+            DbConnection = new SqlConnection(ConnectionString);
             DbSqlCommand = DbConnection.CreateCommand();
         }
 
-        private SqlParameter[] Parameters(params ParameterOptions[] parameters)
-            => parameters.Select(x => new SqlParameter()
-            {
-                ParameterName = x.Name,
-                Value = x.Value
-            }).ToArray();
-
-        public virtual DataTable ExecuteProc(string name, params ParameterOptions[] parameters)
+        public IEnumerable<TEntity> ExecuteProc<TEntity>(string name, params SqlParameter[] parameters)
         {
             DbSqlCommand.Parameters.Clear();
             DbSqlCommand.CommandText = name;
@@ -33,14 +28,56 @@ namespace Topic.Data
 
             if (parameters?.Length > 0)
             {
-                DbSqlCommand.Parameters.AddRange(Parameters(parameters));
+                DbSqlCommand.Parameters.AddRange(parameters);
             }
 
-            DataTable dbResult = new DataTable();
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(DbSqlCommand);
-            sqlDataAdapter.Fill(dbResult);
+            return Mapping<TEntity>(DbSqlCommand);
+        }
 
-            return dbResult;
+        private IEnumerable<TEntity> Mapping<TEntity>(SqlCommand command)
+        {
+            DbConnection.Open(); //executeReader require open connection
+
+            using (var item = command.ExecuteReader())
+            {
+                var items = new List<TEntity>();
+                while (item.Read()) items.Add(Map<TEntity>(item));
+
+                return items;
+            }
+        }
+
+        private TEntity Map<TEntity>(IDataReader item)
+        {
+            var instance = Activator.CreateInstance<TEntity>();
+            foreach (var property in typeof(TEntity).GetProperties())
+            {
+                //default property name
+                var name = property.Name;
+                //get property name
+                foreach (var attribute in property.GetCustomAttributes(true))
+                {
+                    var nameAttribute = attribute as NameAttribute;
+
+                    name = nameAttribute != null ? nameAttribute.PropertyName : property.Name;
+                }
+
+                //set value to property
+                if (item.HasColumn(name) && !item.IsDBNull(item.GetOrdinal(name)))
+                {
+                    property.SetValue(instance, item[name]);
+                }
+            }
+
+            return instance;
+        }
+
+        public void Dispose()
+        {
+            DbConnection.Close();
+
+            DbConnection.Dispose();
+            DbSqlCommand.Dispose();
         }
     }
 }
