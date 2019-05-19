@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using Topic.Data.Repositories;
 using Topic.Models;
 using Topic.ViewModels;
+using Topic.ViewModels.Requests;
 
 namespace Topic.Controllers
 {
@@ -10,6 +11,9 @@ namespace Topic.Controllers
         // GET
         public ActionResult Index()
         {
+            //test
+            UserSignIn("turtle", "12345");
+
             if (IsExpire)
             {
                 return RedirectToAction("SignIn", "Auth");
@@ -17,11 +21,12 @@ namespace Topic.Controllers
 
             var model = new TopicViewModel();
 
-            //get user information
+            //set user information
+            model.Id = Me.Id;
             model.Email = Me.Email;
             model.DisplayName = Me.DisplayName;
 
-            //get posts
+            //set posts
             using (var postRepo = new PostRepository())
             {
                 model.Posts = postRepo.GetAll();
@@ -40,23 +45,70 @@ namespace Topic.Controllers
 
             var model = new ContentViewModel();
 
-            //get user information
+            //set user information
             model.Email = Me.Email;
             model.DisplayName = Me.DisplayName;
 
-            //get post
+            //set post
             using (var postRepo = new PostRepository())
             {
                 model.Post = postRepo.FindById(id);
             }
 
-            //get comments
+            //set comments
             using (var commentRepo = new CommentRepository())
             {
                 model.Comments = commentRepo.GetFindByPostId(model.Post.Id);
             }
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Detail(CreateCommentRequest command)
+        {
+            if (!ModelState.IsValid)
+            {
+                var model = new ContentViewModel();
+
+                //set user information
+                model.Email = Me.Email;
+                model.DisplayName = Me.DisplayName;
+
+                //set post
+                using (var postRepo = new PostRepository())
+                {
+                    model.Post = postRepo.FindById(command.PostId);
+                }
+
+                //set comments
+                using (var commentRepo = new CommentRepository())
+                {
+                    model.Comments = commentRepo.GetFindByPostId(model.Post.Id);
+                }
+
+                return View(model);
+            }
+
+            if (IsExpire)
+            {
+                return RedirectToAction("SignIn", "Auth");
+            }
+
+            //add comment
+            using (var commentRepo = new CommentRepository())
+            {
+                commentRepo.Add(new Comment
+                {
+                    Content = command.Content,
+                    AuthorId = Me.Id,
+                    StatusId = Status.Author,
+                    PostId = command.PostId,
+                    Url = " ",
+                });
+            }
+
+            return RedirectToAction("Detail", command.PostId);
         }
 
         [HttpGet]
@@ -67,72 +119,51 @@ namespace Topic.Controllers
                 return RedirectToAction("SignIn", "Auth");
             }
 
-            var model = new TopicViewModel();
+            var model = new CreatePostRequest {Email = Me.Email, DisplayName = Me.DisplayName};
 
-            //get user information
-            model.Email = Me.Email;
-            model.DisplayName = Me.DisplayName;
+            //set user information
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(Post command)
+        public ActionResult Create(CreatePostRequest command)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             if (IsExpire)
             {
                 return RedirectToAction("SignIn", "Auth");
             }
 
-            //custom value
-            command.AuthorId = Me.Id;
-            command.StatusId = Status.Author;
-
             //add post
             using (var postRepo = new PostRepository())
             {
-                postRepo.Add(command);
+                postRepo.Add(new Post
+                {
+                    Title = command.Title,
+                    Content = command.Content,
+                    AuthorId = Me.Id,
+                    StatusId = Status.Author
+                });
             }
 
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ActionResult Comment()
+        public ActionResult UnpublishedPost(int id)
         {
-            if (IsExpire)
+            //unpublished post
+            using (var postRepo = new PostRepository())
             {
-                return RedirectToAction("SignIn", "Auth");
+                postRepo.Unpublished(id, false);
             }
 
-            var model = new TopicViewModel();
-
-            //get user information
-            model.Email = Me.Email;
-            model.DisplayName = Me.DisplayName;
-
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Comment(Comment command)
-        {
-            if (IsExpire)
-            {
-                return RedirectToAction("SignIn", "Auth");
-            }
-
-            //custom value
-            command.AuthorId = Me.Id;
-            command.StatusId = Status.Author;
-
-            //add comment
-            using (var commentRepo = new CommentRepository())
-            {
-                commentRepo.Add(command);
-            }
-
-            return RedirectToAction("Detail", command.PostId);
+            return RedirectToAction("Index");
         }
     }
 }

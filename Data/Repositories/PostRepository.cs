@@ -20,7 +20,7 @@ namespace Topic.Data.Repositories
             => _context.ExecuteProc<Post>("postpGetAll", null);
 
         public Post FindById(int id)
-            => _context.ExecuteProc<Post>("", new SqlParameter("postpFindById", id)).FirstOrDefault();
+            => _context.ExecuteProc<Post>("postpFindById", new SqlParameter("@id", id)).FirstOrDefault();
 
         public Post Add(Post post)
         {
@@ -29,9 +29,16 @@ namespace Topic.Data.Repositories
                 new SqlParameter("@authorId", post.AuthorId),
                 new SqlParameter("@statusId", post.StatusId),
                 new SqlParameter("@createdDate", DateTime.Now),
-                new SqlParameter("@updatedDate", DateTime.Now));
+                new SqlParameter("@updatedDate", DateTime.Now),
+                new SqlParameter("@isPublished", true));
 
             return post;
+        }
+
+        public void Unpublished(int id, bool isPublished)
+        {
+            _context.ExecuteProc<object>("postpIsPublished", new SqlParameter("@id", id),
+                new SqlParameter("@isPublished", isPublished));
         }
 
         public void Dispose()

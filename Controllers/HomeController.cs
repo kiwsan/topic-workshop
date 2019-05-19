@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace Topic.Controllers
 {
@@ -6,6 +7,8 @@ namespace Topic.Controllers
     {
         public ActionResult Index()
         {
+            Console.WriteLine("");
+            
             return View();
         }
 

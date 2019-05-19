@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Topic.Models;
+using Topic.ViewModels.Requests;
 
 namespace Topic.ViewModels
 {

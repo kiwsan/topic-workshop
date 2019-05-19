@@ -1,0 +1,15 @@
+@model Topic.ViewModels.Requests.CreateCommentRequest
+
+@using (Html.BeginForm("Detail", "Topic", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.PostId)
+    
+    <div class="panel panel-default" style="margin-top: 2rem;">
+        <div class="panel-body ">
+            @Html.TextAreaFor(x => x.Content, new {@class = "form-control", @style = "max-width:100%;", @cols = "3", @rows = "8"})
+            @Html.ValidationMessageFor(x => x.Content, "", new {@class = "text-danger"})
+        </div>
+    </div>
+    <input type="submit" name="comment" id="comment" value="Comment" class="btn btn-primary pull-right"/>
+    <div class="clearfix"></div>
+}

@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Topic</RootNamespace>
     <AssemblyName>Topic</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -134,6 +134,8 @@
     <Compile Include="Utils\AppConstants.cs" />
     <Compile Include="Utils\NameAttribute.cs" />
     <Compile Include="ViewModels\ContentViewModel.cs" />
+    <Compile Include="ViewModels\Requests\CreateCommentRequest.cs" />
+    <Compile Include="ViewModels\Requests\CreatePostRequest.cs" />
     <Compile Include="ViewModels\TopicViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,10 +161,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\Auth\SignIn.cshtml" />
     <Content Include="Views\Auth\SignUp.cshtml" />
-    <Content Include="Views\Topic\Comment.cshtml" />
     <Content Include="Views\Topic\Create.cshtml" />
     <Content Include="Views\Topic\Detail.cshtml" />
     <Content Include="Views\Topic\Index.cshtml" />
+    <Content Include="Views\Topic\WriteComment.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

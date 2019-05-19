@@ -8,9 +8,15 @@ namespace Topic.Controllers
     {
         // GET
         [HttpGet]
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult SignIn(string username, string password)
         {
-            SignIn(username, password);
+            UserSignIn(username, password);
 
             if (Me == null)
             {
@@ -21,6 +27,12 @@ namespace Topic.Controllers
         }
 
         [HttpGet]
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult SignUp(User command)
         {
             //add a new user
