@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Topic.Data.Repositories;
 using Topic.Models;
 
-namespace StoredProcedure.Tests
+namespace UnitTests
 {
     [TestFixture]
     public class ExecuteProcUserTests

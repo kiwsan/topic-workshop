@@ -47,7 +47,7 @@ namespace Topic.Data.Repositories
             return user;
         }
         
-        public bool IsExisted(string email, string username)
+        public bool IsExisting(string email, string username)
             => _context.ExecuteProc<User>("uspIsExisted", new SqlParameter("@email", email),
                    new SqlParameter("@username", username)).FirstOrDefault() != null;
 

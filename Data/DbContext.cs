@@ -36,7 +36,10 @@ namespace Topic.Data
 
         private IEnumerable<TEntity> Mapping<TEntity>(SqlCommand command)
         {
-            DbConnection.Open(); //executeReader require open connection
+            if (DbConnection.State == ConnectionState.Closed)
+            {
+                DbConnection.Open(); //executeReader require open connection
+            }
 
             using (var item = command.ExecuteReader())
             {
@@ -74,7 +77,10 @@ namespace Topic.Data
 
         public void Dispose()
         {
-            DbConnection.Close();
+            if (DbConnection.State == ConnectionState.Open)
+            {
+                DbConnection.Close();
+            }
 
             DbConnection.Dispose();
             DbSqlCommand.Dispose();

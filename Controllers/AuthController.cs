@@ -38,7 +38,7 @@ namespace Topic.Controllers
             //add a new user
             using (var userRepo = new UserRepository())
             {
-                if (userRepo.IsExisted(command.Email, command.UserName))
+                if (userRepo.IsExisting(command.Email, command.UserName))
                 {
                     return View();
                 }
