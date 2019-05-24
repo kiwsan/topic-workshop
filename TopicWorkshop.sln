@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A390FD2D-65B0-44E2-8177-390517C852B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{D8302E19-5E47-4CCD-A85A-A6C15153DEB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvc", "WebMvc\WebMvc.csproj", "{164F94AD-4C5A-47A1-8D00-A06B948AAB5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A390FD2D-65B0-44E2-8177-390517C852B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A390FD2D-65B0-44E2-8177-390517C852B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A390FD2D-65B0-44E2-8177-390517C852B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A390FD2D-65B0-44E2-8177-390517C852B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8302E19-5E47-4CCD-A85A-A6C15153DEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8302E19-5E47-4CCD-A85A-A6C15153DEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8302E19-5E47-4CCD-A85A-A6C15153DEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8302E19-5E47-4CCD-A85A-A6C15153DEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{164F94AD-4C5A-47A1-8D00-A06B948AAB5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{164F94AD-4C5A-47A1-8D00-A06B948AAB5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{164F94AD-4C5A-47A1-8D00-A06B948AAB5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{164F94AD-4C5A-47A1-8D00-A06B948AAB5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
