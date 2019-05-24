@@ -1,0 +1,7 @@
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\bin\Debug\IntegrationTests.dll
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\bin\Debug\IntegrationTests.pdb
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\bin\Debug\nunit.framework.dll
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\bin\Debug\nunit.framework.xml
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\obj\Debug\IntegrationTests.csprojResolveAssemblyReference.cache
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\obj\Debug\IntegrationTests.dll
+C:\Users\kiwsa\Documents\workspace\topic-workshop\IntegrationTests\obj\Debug\IntegrationTests.pdb

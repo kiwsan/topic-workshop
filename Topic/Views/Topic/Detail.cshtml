@@ -1,0 +1,34 @@
+@using Topic.ViewModels.Requests
+@model Topic.ViewModels.ContentViewModel
+
+@{
+    ViewBag.Title = "Topic content";
+}
+
+<div class="panel panel-default" style="margin-top: 2rem;">
+    <div class="panel-heading">
+        <p class="h3">Title</p>
+        @Html.TextBoxFor(x => x.Post.Title, new {@class = "form-control", @style = "max-width:100%;"})
+    </div>
+    <div class="panel-body ">
+        <p class="h4">Content</p>
+        @Html.TextAreaFor(x => x.Post.Content, new {@class = "form-control", @style = "max-width:100%;", @cols = "3", @rows = "8"})
+
+    </div>
+</div>
+
+<h3>Comments</h3>
+<div class="row">
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="col-md-12">
+            <p class="text-primary h5">@comment.AuthorId</p>
+            <p>@comment.Content</p>
+            <hr/>
+        </div>
+    }
+</div>
+
+@{
+    Html.RenderPartial("WriteComment", new CreateCommentRequest {PostId = Model.Post.Id});
+}
