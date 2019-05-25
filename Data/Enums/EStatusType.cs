@@ -1,6 +1,6 @@
 namespace Data.Enums
 {
-    public enum StatusTypeEnum
+    public enum EStatusType
     {
         User = 3,
         Admin,

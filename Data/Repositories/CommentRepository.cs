@@ -16,7 +16,9 @@ namespace Data.Repositories
         }
 
         public IEnumerable<Comment> GetFindByPostId(int postId)
-            => _context.ExecuteProc<Comment>("commentpFindByPostId", new SqlParameter("@postId", postId));
+        {
+            return _context.ExecuteProc<Comment>("commentpFindByPostId", new SqlParameter("@postId", postId));
+        }
 
         public Comment Add(Comment comment)
         {

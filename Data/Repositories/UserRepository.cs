@@ -28,12 +28,16 @@ namespace Data.Repositories
         }
 
         public User FindById(int id)
-            => _context.ExecuteProc<User>("uspFindById", new SqlParameter("@id", id)).FirstOrDefault();
+        {
+            return _context.ExecuteProc<User>("uspFindById", new SqlParameter("@id", id)).FirstOrDefault();
+        }
 
         public User SignIn(string username, string password)
-            => _context.ExecuteProc<User>("uspSignIn",
+        {
+            return _context.ExecuteProc<User>("uspSignIn",
                 new SqlParameter("@username", username),
                 new SqlParameter("@password", password)).FirstOrDefault();
+        }
 
         public User SignUp(User user)
         {
@@ -45,10 +49,12 @@ namespace Data.Repositories
 
             return user;
         }
-        
+
         public bool IsExisted(string email, string username)
-            => _context.ExecuteProc<User>("uspIsExisted", new SqlParameter("@email", email),
-                   new SqlParameter("@username", username)).FirstOrDefault() != null;
+        {
+            return _context.ExecuteProc<User>("uspIsExisted", new SqlParameter("@email", email),
+                       new SqlParameter("@username", username)).FirstOrDefault() != null;
+        }
 
         public void Dispose()
         {

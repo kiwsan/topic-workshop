@@ -17,10 +17,14 @@ namespace Data.Repositories
         }
 
         public IEnumerable<Post> GetAll()
-            => _context.ExecuteProc<Post>("postpGetAll", null);
+        {
+            return _context.ExecuteProc<Post>("postpGetAll", null);
+        }
 
         public Post FindById(int id)
-            => _context.ExecuteProc<Post>("postpFindById", new SqlParameter("@id", id)).FirstOrDefault();
+        {
+            return _context.ExecuteProc<Post>("postpFindById", new SqlParameter("@id", id)).FirstOrDefault();
+        }
 
         public Post Add(Post post)
         {

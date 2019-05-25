@@ -1,9 +1,11 @@
 ﻿using System.Web.Mvc;
+using WebMvc.Filters;
 
 namespace WebMvc.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        [Auth]
         public ActionResult Index()
         {
             return View();

@@ -45,7 +45,7 @@
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\StatusType.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Enums\StatusTypeEnum.cs" />
+    <Compile Include="Enums\EStatusType.cs" />
     <Compile Include="Extensions\IDataRecordExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

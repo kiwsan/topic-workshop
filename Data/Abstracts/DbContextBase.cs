@@ -59,7 +59,7 @@ namespace Data.Abstracts
             DbSqlCommand.CommandType = CommandType.StoredProcedure;
 
             //add params
-            if (parameters?.Length > 0)
+            if (parameters != null && parameters.Length > 0)
             {
                 DbSqlCommand.Parameters.AddRange(parameters);
             }

@@ -1,0 +1,45 @@
+@using Data.Entities
+@using Data.Utils
+@model WebMvc.ViewModels.TopicViewModels
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<hr/>
+<a href="@Url.Action("CreatePost", "Topic")" class="pull-right btn btn-success">New Post</a>
+<div class="clearfix"></div>
+<table class="table table-responsive">
+    <thead>
+    <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Published</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach (var post in Model.Posts)
+        {
+            <tr>
+                <td>@post.AuthorId</td>
+                <td>@post.Title</td>
+                <td>@post.Content</td>
+                <td>@post.UpdatedDate.ToString("f")</td>
+                <td>
+                    <a href="@Url.Action("Content", "Topic", new {id = post.Id})" class="btn btn-sm btn-default">View content</a>
+                    @{
+                        if (post.AuthorId == ((User) Session[AppConstants.AuthKey]).Id)
+                        {
+                            <a href="@Url.Action("UnpublishedPost", "Topic", new {id = post.Id})" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you wish to remove this topic?')">Remove</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

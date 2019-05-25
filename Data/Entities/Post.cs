@@ -13,7 +13,7 @@ namespace Data.Entities
         [Name("content")]
         public string Content { get; set; }
         [Name("status_id")]
-        public StatusTypeEnum StatusId { get; set; }
+        public EStatusType StatusId { get; set; }
         [Name("created_date")]
         public DateTime CreatedDate { get; set; }
         [Name("updated_date")]
