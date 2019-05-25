@@ -56,7 +56,7 @@ namespace WebMvc.Controllers
             //set comments
             using (var commentRepo = new CommentRepository())
             {
-                model.Comments = commentRepo.GetFindByPostId(model.Post.Id).Select(item => new CommentResponse
+                model.Comments = commentRepo.FindByPostId(model.Post.Id).Select(item => new CommentResponse
                 {
                     Id = item.Id,
                     Content = item.Content,
@@ -90,7 +90,7 @@ namespace WebMvc.Controllers
                 //set comments
                 using (var commentRepo = new CommentRepository())
                 {
-                    model.Comments = commentRepo.GetFindByPostId(model.Post.Id).Select(item => new CommentResponse
+                    model.Comments = commentRepo.FindByPostId(model.Post.Id).Select(item => new CommentResponse
                     {
                         Id = item.Id,
                         Content = item.Content,
@@ -109,7 +109,7 @@ namespace WebMvc.Controllers
                     Content = command.Content,
                     PostId = command.PostId,
                     Url = " ",
-                    AuthorId = Auth.Id,
+                    AuthorId = CurrentUser.Id,
                     StatusId = EStatusType.Author
                 });
             }
@@ -140,7 +140,7 @@ namespace WebMvc.Controllers
                 {
                     Title = command.Title,
                     Content = command.Content,
-                    AuthorId = Auth.Id,
+                    AuthorId = CurrentUser.Id,
                     StatusId = EStatusType.Author
                 });
             }

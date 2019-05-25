@@ -2,11 +2,12 @@ using System;
 using System.Data.SqlClient;
 using System.Linq;
 using Data.Entities;
+using Data.Interfaces;
 using Data.Utils;
 
 namespace Data.Repositories
 {
-    public class UserRepository: IDisposable
+    public class UserRepository : IDisposable, IUserRepository
     {
         private readonly DbContext _context;
 

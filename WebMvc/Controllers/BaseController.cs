@@ -6,19 +6,13 @@ namespace WebMvc.Controllers
 {
     public abstract class BaseController : Controller
     {
-        protected bool IsExpire
-        {
-            get { return Session[AppConstants.AuthKey] == null; }
-        }
+        protected bool IsExpire => Session[AppConstants.AuthKey] == null;
 
         protected void SignOut()
         {
             Session[AppConstants.AuthKey] = null;
         }
 
-        protected User Auth
-        {
-            get { return (User) Session[AppConstants.AuthKey]; }
-        }
+        protected User CurrentUser => (User) Session[AppConstants.AuthKey];
     }
 }

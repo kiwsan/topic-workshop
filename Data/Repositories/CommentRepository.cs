@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Data.Entities;
+using Data.Interfaces;
 using Data.Utils;
 
 namespace Data.Repositories
 {
-    public class CommentRepository: IDisposable
+    public class CommentRepository : IDisposable, ICommentRepository
     {
         private readonly DbContext _context;
 
@@ -15,7 +16,7 @@ namespace Data.Repositories
             _context = new DbContext(AppConstants.ConnectionString);
         }
 
-        public IEnumerable<Comment> GetFindByPostId(int postId)
+        public IEnumerable<Comment> FindByPostId(int postId)
         {
             return _context.ExecuteProc<Comment>("commentpFindByPostId", new SqlParameter("@postId", postId));
         }
