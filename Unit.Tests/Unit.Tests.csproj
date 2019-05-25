@@ -5,12 +5,12 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{A390FD2D-65B0-44E2-8177-390517C852B6}</ProjectGuid>
+        <ProjectGuid>{E560A772-5E53-4F54-A6E3-EE250E5303F2}</ProjectGuid>
         <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>UnitTests</RootNamespace>
-        <AssemblyName>UnitTests</AssemblyName>
+        <RootNamespace>Unit.Tests</RootNamespace>
+        <AssemblyName>Unit.Tests</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>

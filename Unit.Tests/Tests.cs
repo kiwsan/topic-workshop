@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace UnitTests
+namespace Unit.Tests
 {
     [TestFixture]
     public class Tests
