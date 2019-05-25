@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{ABAD6EEF-167B-4B73-B3C9-F443EB3B9F91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceptance.Tests", "Acceptance.Tests\Acceptance.Tests.csproj", "{F261FE3D-D036-4097-AD8A-0DB119C18DD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{ABAD6EEF-167B-4B73-B3C9-F443EB3B9F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABAD6EEF-167B-4B73-B3C9-F443EB3B9F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABAD6EEF-167B-4B73-B3C9-F443EB3B9F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F261FE3D-D036-4097-AD8A-0DB119C18DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F261FE3D-D036-4097-AD8A-0DB119C18DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F261FE3D-D036-4097-AD8A-0DB119C18DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F261FE3D-D036-4097-AD8A-0DB119C18DD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
